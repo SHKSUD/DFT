@@ -4,9 +4,13 @@
   --bg3: #111820;
   --surface: #141b26;
   --surface2: #1a2332;
-  --red: #e8202a;
-  --red2: #ff3340;
-  --red-dim: rgba(232,32,42,0.15);
+  
+  /* Global Blue Theme */
+  --blue: #0284c7;        /* sky-600 — slightly darker primary blue */
+  --blue2: #0ea5e9;       /* sky-500 — hover / highlight */
+  --blue-dim: rgba(2,132,199,0.15);
+  --glow-blue: 0 0 60px rgba(2,132,199,0.25);
+  
   --gold: #c9a84c;
   --gold-dim: rgba(201,168,76,0.12);
   --text: #f0f2f5;
@@ -14,7 +18,6 @@
   --text-dim: rgba(240,242,245,0.25);
   --border: rgba(240,242,245,0.07);
   --border2: rgba(240,242,245,0.12);
-  --glow-red: 0 0 60px rgba(232,32,42,0.25);
   --glow-gold: 0 0 60px rgba(201,168,76,0.2);
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'DM Sans', sans-serif;
@@ -36,13 +39,13 @@ body {
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
 
 /* ── NOISE OVERLAY ── */
 body::before {
   content: '';
   position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='[http://www.w3.org/2000/svg'%3E%3Cfilter](http://www.w3.org/2000/svg'%3E%3Cfilter) id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none; z-index: 9999; opacity: 0.4;
 }
 
@@ -51,15 +54,15 @@ body::before {
   background-image: radial-gradient(rgba(240,242,245,0.06) 1px, transparent 1px);
   background-size: 28px 28px;
 }
-.dot-grid-red {
-  background-image: radial-gradient(rgba(232,32,42,0.12) 1px, transparent 1px);
+.dot-grid-blue {
+  background-image: radial-gradient(rgba(2,132,199,0.12) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
 /* ── UTILS ── */
 .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 .tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
-.tag-red { color: var(--red); }
+.tag-blue { color: var(--blue); }
 .tag::before { content: ''; width: 5px; height: 5px; background: currentColor; border-radius: 50%; }
 .label { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--text-dim); }
 .divider { width: 100%; height: 1px; background: var(--border); }
@@ -71,10 +74,10 @@ body::before {
   padding: 14px 28px; border-radius: 2px; border: none; cursor: pointer;
   text-decoration: none; transition: all 0.2s ease; font-weight: 700;
 }
-.btn-red { background: var(--red); color: #fff; }
-.btn-red:hover { background: var(--red2); box-shadow: var(--glow-red); transform: translateY(-1px); }
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: var(--blue2); box-shadow: var(--glow-blue); transform: translateY(-1px); }
 .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-.btn-outline:hover { border-color: var(--red); color: var(--red); }
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
 .btn-gold { background: var(--gold); color: #080a0e; }
 .btn-gold:hover { box-shadow: var(--glow-gold); transform: translateY(-1px); }
 
@@ -85,85 +88,6 @@ body::before {
 
 /* ── SECTION ── */
 section { position: relative; }
-
-/* ═══════════════════════════
-   HERO BLUE THEME OVERRIDE
-   Scoped to .hero + nav only
-   All other sections untouched
-═══════════════════════════ */
-
-/* Sky-blue palette tokens (hero-local) */
-:root {
-  --sky: #38bdf8;        /* sky-400 — primary accent */
-  --sky2: #7dd3fc;       /* sky-300 — hover / highlight */
-  --sky-dim: rgba(56,189,248,0.15);
-  --sky-glow: 0 0 60px rgba(56,189,248,0.25);
-  --sky-grid: rgba(56,189,248,0.05);
-}
-
-/* Nav — blue accent replaces red */
-nav { border-bottom-color: rgba(56,189,248,0.12); }
-.nav-logo span { color: var(--sky); }
-.nav-logo-dot { background: var(--sky); }
-.nav-links a:hover,
-.nav-links a.active { color: var(--text); border-bottom-color: var(--sky); }
-.nav-join { background: var(--sky); color: #080a0e; }
-.nav-join:hover { background: var(--sky2); box-shadow: var(--sky-glow); }
-.nav-login:hover { color: var(--sky); }
-
-/* Hero section — all red → sky-blue */
-.hero { background: var(--bg); }
-
-.hero-grid {
-  background-image:
-    linear-gradient(var(--sky-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--sky-grid) 1px, transparent 1px);
-}
-.hero-glow {
-  background: radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, transparent 65%);
-}
-.hero-brackets::before {
-  border-top-color: var(--sky); border-left-color: var(--sky); opacity: 0.5;
-}
-.hero-brackets::after {
-  border-bottom-color: var(--sky); border-right-color: var(--sky); opacity: 0.5;
-}
-
-.hero-eyebrow-line { background: var(--sky); }
-.hero-eyebrow-text { color: var(--sky); }
-.hero-title .line2 { color: var(--sky); }
-.hero-tagline { border-left-color: var(--sky); }
-
-.btn-red { background: var(--sky); color: #080a0e; }
-.btn-red:hover { background: var(--sky2); box-shadow: var(--sky-glow); }
-
-/* Hero stats */
-.hero-stat-num { color: var(--sky); }
-
-/* Ticker — deep navy instead of red */
-.ticker-wrap { background: #0c4a6e; }
-.ticker-item { border-right-color: rgba(56,189,248,0.25); }
-
-/* Hero video card label */
-.hero-video-label { background: var(--sky); color: #080a0e; }
-
-/* Hero scrollbar thumb */
-::-webkit-scrollbar-thumb { background: var(--sky); }
-
-/* Scanline tint */
-.hero::after {
-  background: linear-gradient(transparent, rgba(56,189,248,0.03), transparent);
-}
-
-/* dot-grid in hero */
-.hero.dot-grid {
-  background-image: radial-gradient(rgba(56,189,248,0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* Hero outline button → sky on hover */
-.hero .btn-outline:hover { border-color: var(--sky); color: var(--sky); }
-.hero .btn-outline { border-color: rgba(56,189,248,0.3); color: var(--text-muted); }
 
 /* ═══════════════════════════
    NAV
@@ -185,8 +109,8 @@ nav {
   font-family: var(--font-display); font-size: 28px; letter-spacing: 0.05em;
   color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px;
 }
-.nav-logo span { color: var(--red); }
-.nav-logo-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+.nav-logo span { color: var(--blue); }
+.nav-logo-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
 
 .nav-links { display: flex; align-items: center; gap: 0; }
@@ -195,12 +119,12 @@ nav {
   color: var(--text-muted); text-decoration: none; padding: 22px 16px;
   border-bottom: 2px solid transparent; transition: all 0.2s;
 }
-.nav-links a:hover, .nav-links a.active { color: var(--text); border-bottom-color: var(--red); }
+.nav-links a:hover, .nav-links a.active { color: var(--text); border-bottom-color: var(--blue); }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 .nav-login { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 8px 16px; transition: color 0.2s; }
 .nav-login:hover { color: var(--text); }
-.nav-join { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; background: var(--red); color: #fff; border: none; padding: 10px 20px; cursor: pointer; font-weight: 700; transition: all 0.2s; }
-.nav-join:hover { background: var(--red2); }
+.nav-join { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; background: var(--blue); color: #fff; border: none; padding: 10px 20px; cursor: pointer; font-weight: 700; transition: all 0.2s; }
+.nav-join:hover { background: var(--blue2); box-shadow: var(--glow-blue); }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .hamburger span { width: 22px; height: 1.5px; background: var(--text); transition: all 0.3s; }
@@ -217,7 +141,7 @@ nav {
 .hero::after {
   content: '';
   position: absolute; top: -100%; left: 0; width: 100%; height: 60px;
-  background: linear-gradient(transparent, rgba(232,32,42,0.04), transparent);
+  background: linear-gradient(transparent, rgba(2,132,199,0.04), transparent);
   animation: scanline 8s linear infinite;
   pointer-events: none;
 }
@@ -231,8 +155,8 @@ nav {
 .hero-grid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(232,32,42,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,32,42,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(2,132,199,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2,132,199,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: grid-shift 20s linear infinite;
 }
@@ -245,13 +169,13 @@ nav {
 .hero-brackets::before {
   content: '';
   position: absolute; top: 80px; left: 24px; width: 60px; height: 60px;
-  border-top: 1px solid var(--red); border-left: 1px solid var(--red);
+  border-top: 1px solid var(--blue); border-left: 1px solid var(--blue);
   opacity: 0.6;
 }
 .hero-brackets::after {
   content: '';
   position: absolute; bottom: 60px; right: 24px; width: 60px; height: 60px;
-  border-bottom: 1px solid var(--red); border-right: 1px solid var(--red);
+  border-bottom: 1px solid var(--blue); border-right: 1px solid var(--blue);
   opacity: 0.6;
 }
 
@@ -259,7 +183,7 @@ nav {
 .hero-glow {
   position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
   width: 900px; height: 600px;
-  background: radial-gradient(ellipse, rgba(232,32,42,0.08) 0%, transparent 65%);
+  background: radial-gradient(ellipse, rgba(2,132,199,0.08) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -272,17 +196,17 @@ nav {
 .hero-eyebrow {
   display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
 }
-.hero-eyebrow-line { width: 40px; height: 1px; background: var(--red); }
-.hero-eyebrow-text { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--red); }
+.hero-eyebrow-line { width: 40px; height: 1px; background: var(--blue); }
+.hero-eyebrow-text { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--blue); }
 
 .hero-title { margin-bottom: 24px; }
 .hero-title .line1 { color: var(--text); display: block; }
-.hero-title .line2 { color: var(--red); display: block; }
+.hero-title .line2 { color: var(--blue); display: block; }
 .hero-title .line3 { color: var(--text-muted); display: block; font-size: clamp(40px,6vw,88px); }
 
 .hero-tagline {
   font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 400px;
-  margin-bottom: 36px; border-left: 2px solid var(--red); padding-left: 16px;
+  margin-bottom: 36px; border-left: 2px solid var(--blue); padding-left: 16px;
 }
 .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
@@ -297,7 +221,7 @@ nav {
 .hero-video-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(232,32,42,0.05) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(2,132,199,0.05) 0%, transparent 60%);
 }
 .hero-video-thumb {
   width: 100%; aspect-ratio: 16/9; background: var(--bg2);
@@ -308,7 +232,7 @@ nav {
 }
 .hero-video-label {
   position: absolute; top: 10px; left: 10px;
-  background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 8px;
+  background: var(--blue); color: #fff; font-family: var(--font-mono); font-size: 8px;
   padding: 4px 10px; letter-spacing: 0.2em; text-transform: uppercase;
 }
 .hero-video-info { padding: 16px 20px; display: flex; align-items: center; gap: 10px; }
@@ -324,7 +248,7 @@ nav {
   background: var(--surface); padding: 20px; text-align: center;
 }
 .hero-stat-num {
-  font-family: var(--font-display); font-size: 32px; color: var(--red); line-height: 1;
+  font-family: var(--font-display); font-size: 32px; color: var(--blue); line-height: 1;
   margin-bottom: 4px;
 }
 .hero-stat-label { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-dim); }
@@ -332,7 +256,7 @@ nav {
 /* Ticker */
 .ticker-wrap {
   position: absolute; bottom: 0; left: 0; right: 0;
-  background: var(--red); padding: 8px 0; overflow: hidden; z-index: 3;
+  background: #063c61; padding: 8px 0; overflow: hidden; z-index: 3;
 }
 .ticker-inner {
   display: flex; align-items: center; gap: 0; white-space: nowrap;
@@ -355,7 +279,7 @@ nav {
 }
 .section-header-left { }
 .section-num {
-  font-family: var(--font-mono); font-size: 10px; color: var(--red); letter-spacing: 0.3em;
+  font-family: var(--font-mono); font-size: 10px; color: var(--blue); letter-spacing: 0.3em;
   text-transform: uppercase; margin-bottom: 8px; display: block;
 }
 .section-view-all {
@@ -363,7 +287,7 @@ nav {
   color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 6px;
   transition: color 0.2s;
 }
-.section-view-all:hover { color: var(--red); }
+.section-view-all:hover { color: var(--blue); }
 .section-view-all::after { content: '→'; }
 
 /* ═══════════════════════════
@@ -385,7 +309,7 @@ nav {
   pointer-events: none;
 }
 .video-featured-info { padding: 28px 32px; }
-.video-featured-tag { display: inline-block; background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 8px; padding: 4px 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.video-featured-tag { display: inline-block; background: var(--blue); color: #fff; font-family: var(--font-mono); font-size: 8px; padding: 4px 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
 .video-featured-title { font-family: var(--font-display); font-size: 26px; line-height: 1.1; margin-bottom: 12px; }
 .video-featured-meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; }
 
@@ -406,7 +330,7 @@ nav {
 }
 .video-play-icon svg { width: 28px; height: 28px; color: #fff; opacity: 0.8; }
 .video-card-small-info { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.video-card-small-cat { font-family: var(--font-mono); font-size: 7px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--red); margin-bottom: 4px; }
+.video-card-small-cat { font-family: var(--font-mono); font-size: 7px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue); margin-bottom: 4px; }
 .video-card-small-title { font-size: 12px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
 .video-card-small-dur { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); }
 
@@ -416,7 +340,7 @@ nav {
   padding: 8px 18px; border: 1px solid var(--border2); background: none; color: var(--text-muted);
   cursor: pointer; transition: all 0.2s;
 }
-.video-cat-btn:hover, .video-cat-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+.video-cat-btn:hover, .video-cat-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
 
 /* ═══════════════════════════
    TRINETRA
@@ -550,7 +474,7 @@ nav {
 .article-card:hover { background: var(--surface2); }
 .article-card-cat {
   font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--red); padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  color: var(--blue); padding-bottom: 16px; border-bottom: 1px solid var(--border);
 }
 .article-card-title { font-family: var(--font-display); font-size: 22px; line-height: 1.1; }
 .article-card-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.7; flex: 1; }
@@ -561,14 +485,14 @@ nav {
   color: var(--text-dim); background: none; border: 1px solid var(--border); padding: 6px 12px;
   cursor: pointer; transition: all 0.2s;
 }
-.article-card-save:hover { border-color: var(--red); color: var(--red); }
+.article-card-save:hover { border-color: var(--blue); color: var(--blue); }
 
 .article-featured {
   background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 0;
 }
 .article-featured-content { padding: 48px; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
-.article-featured-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--red-dim); border: 1px solid rgba(232,32,42,0.25); padding: 6px 14px; width: fit-content; }
-.article-featured-badge span { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--red); }
+.article-featured-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-dim); border: 1px solid rgba(2,132,199,0.25); padding: 6px 14px; width: fit-content; }
+.article-featured-badge span { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue); }
 .article-featured-title { font-family: var(--font-display); font-size: 36px; line-height: 1.05; }
 .article-featured-excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
 .article-featured-visual {
@@ -578,7 +502,7 @@ nav {
 .article-featured-visual::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(232,32,42,0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(2,132,199,0.1) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 .globe-svg { width: 200px; height: 200px; opacity: 0.4; animation: rotate 20s linear infinite; }
@@ -593,7 +517,7 @@ nav {
   background: var(--surface); border: 1px solid var(--border);
   transition: all 0.3s; cursor: pointer; overflow: hidden; position: relative;
 }
-.book-card:hover { border-color: var(--red); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.book-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 .book-card-cover {
   aspect-ratio: 3/4; background: var(--bg2); position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
@@ -609,7 +533,7 @@ nav {
 .book-cover-placeholder .bauthor { font-family: var(--font-mono); font-size: 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.2em; }
 .book-cover-badge {
   position: absolute; top: 12px; right: 12px;
-  background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 7px;
+  background: var(--blue); color: #fff; font-family: var(--font-mono); font-size: 7px;
   padding: 4px 8px; text-transform: uppercase; letter-spacing: 0.2em;
 }
 .book-card-info { padding: 20px 24px; }
@@ -617,7 +541,7 @@ nav {
 .book-card-title { font-family: var(--font-display); font-size: 20px; line-height: 1.1; margin-bottom: 8px; }
 .book-card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
 .book-card-price-row { display: flex; align-items: center; justify-content: space-between; }
-.book-card-price { font-family: var(--font-display); font-size: 24px; color: var(--red); }
+.book-card-price { font-family: var(--font-display); font-size: 24px; color: var(--blue); }
 .book-card-formats { display: flex; gap: 4px; }
 .book-format-badge {
   font-family: var(--font-mono); font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em;
@@ -628,7 +552,7 @@ nav {
   text-transform: uppercase; letter-spacing: 0.2em; background: none; border: 1px solid var(--border2);
   color: var(--text-muted); cursor: pointer; transition: all 0.2s; font-weight: 700;
 }
-.book-buy-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.book-buy-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
 
 /* ═══════════════════════════
    EVENTS
@@ -641,34 +565,34 @@ nav {
   display: grid; grid-template-columns: 70px 1fr auto; gap: 28px; align-items: center;
   border-left: 3px solid transparent; transition: all 0.2s; cursor: pointer;
 }
-.event-card:hover { background: var(--surface2); border-left-color: var(--red); }
+.event-card:hover { background: var(--surface2); border-left-color: var(--blue); }
 .event-date-block { text-align: center; }
-.event-date-day { font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--red); }
+.event-date-day { font-family: var(--font-display); font-size: 40px; line-height: 1; color: var(--blue); }
 .event-date-month { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-dim); }
 .event-info { }
-.event-type { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--red); margin-bottom: 6px; }
+.event-type { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--blue); margin-bottom: 6px; }
 .event-title { font-family: var(--font-display); font-size: 22px; line-height: 1.1; margin-bottom: 8px; }
 .event-meta { font-size: 12px; color: var(--text-muted); }
 .event-meta span { font-family: var(--font-mono); font-size: 9px; }
 .event-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
 .event-rsvp {
   font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em;
-  padding: 10px 20px; background: var(--red); color: #fff; border: none; cursor: pointer;
+  padding: 10px 20px; background: var(--blue); color: #fff; border: none; cursor: pointer;
   transition: all 0.2s; white-space: nowrap; font-weight: 700;
 }
-.event-rsvp:hover { background: var(--red2); }
+.event-rsvp:hover { background: var(--blue2); }
 .event-cal { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); background: none; border: 1px solid var(--border); padding: 7px 14px; cursor: pointer; transition: all 0.2s; }
 .event-cal:hover { border-color: var(--border2); color: var(--text-muted); }
 
 .events-sidebar { display: flex; flex-direction: column; gap: 24px; }
 .countdown-card {
-  background: var(--bg); border: 1px solid var(--red); padding: 32px; text-align: center;
+  background: var(--bg); border: 1px solid var(--blue); padding: 32px; text-align: center;
 }
-.countdown-label { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--red); margin-bottom: 16px; }
+.countdown-label { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--blue); margin-bottom: 16px; }
 .countdown-event-name { font-family: var(--font-display); font-size: 22px; margin-bottom: 20px; line-height: 1.1; }
 .countdown-timer { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
 .countdown-unit { background: var(--surface); padding: 12px 8px; }
-.countdown-num { font-family: var(--font-display); font-size: 32px; color: var(--red); line-height: 1; }
+.countdown-num { font-family: var(--font-display); font-size: 32px; color: var(--blue); line-height: 1; }
 .countdown-unit-label { font-family: var(--font-mono); font-size: 7px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-top: 4px; }
 
 /* ═══════════════════════════
@@ -678,7 +602,7 @@ nav {
 #membership::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(232,32,42,0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(2,132,199,0.04) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 .membership-intro {
@@ -692,20 +616,20 @@ nav {
   position: relative; transition: background 0.2s; cursor: pointer;
 }
 .tier-card:hover { background: var(--surface2); }
-.tier-card.featured { background: var(--bg); border: 1px solid var(--red); margin: -12px -1px; z-index: 2; }
+.tier-card.featured { background: var(--bg); border: 1px solid var(--blue); margin: -12px -1px; z-index: 2; }
 .tier-badge {
   position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 7px;
+  background: var(--blue); color: #fff; font-family: var(--font-mono); font-size: 7px;
   padding: 4px 14px; text-transform: uppercase; letter-spacing: 0.2em; white-space: nowrap;
 }
 .tier-name { font-family: var(--font-display); font-size: 28px; margin-bottom: 4px; margin-top: 8px; }
 .tier-tagline { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
-.tier-price { font-family: var(--font-display); font-size: 44px; line-height: 1; color: var(--red); margin-bottom: 4px; }
+.tier-price { font-family: var(--font-display); font-size: 44px; line-height: 1; color: var(--blue); margin-bottom: 4px; }
 .tier-price.free { color: var(--text-muted); }
 .tier-period { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-bottom: 28px; }
 .tier-features { display: flex; flex-direction: column; gap: 12px; flex: 1; margin-bottom: 28px; }
 .tier-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--text-muted); }
-.tier-feature-check { color: var(--red); flex-shrink: 0; margin-top: 1px; }
+.tier-feature-check { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
 .tier-feature-check.dim { color: var(--text-dim); }
 .tier-cta {
   width: 100%; padding: 14px; font-family: var(--font-mono); font-size: 9px;
@@ -714,8 +638,8 @@ nav {
 }
 .tier-cta-outline { background: none; border: 1px solid var(--border2); color: var(--text-muted); }
 .tier-cta-outline:hover { border-color: var(--border2); color: var(--text); }
-.tier-cta-red { background: var(--red); color: #fff; }
-.tier-cta-red:hover { background: var(--red2); }
+.tier-cta-blue { background: var(--blue); color: #fff; }
+.tier-cta-blue:hover { background: var(--blue2); }
 
 /* ═══════════════════════════
    SPONSORSHIP
@@ -772,7 +696,7 @@ footer {
 .footer-top { display: grid; grid-template-columns: 280px 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
 .footer-brand { }
 .footer-logo { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.05em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.footer-logo span { color: var(--red); }
+.footer-logo span { color: var(--blue); }
 .footer-tagline { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
 .footer-socials { display: flex; gap: 8px; }
 .social-btn {
@@ -780,7 +704,7 @@ footer {
   font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; color: var(--text-muted);
   text-decoration: none; transition: all 0.2s;
 }
-.social-btn:hover { border-color: var(--red); color: var(--red); }
+.social-btn:hover { border-color: var(--blue); color: var(--blue); }
 
 .footer-col-title { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--text-dim); margin-bottom: 20px; }
 .footer-links { display: flex; flex-direction: column; gap: 10px; }
@@ -794,7 +718,7 @@ footer {
 }
 .footer-copyright { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-dim); }
 .footer-built-by { font-family: var(--font-mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-dim); }
-.footer-built-by a { color: var(--red); text-decoration: none; }
+.footer-built-by a { color: var(--blue); text-decoration: none; }
 
 /* ═══════════════════════════
    MODAL
@@ -824,7 +748,7 @@ footer {
   padding: 10px 20px; background: none; border: none; color: var(--text-muted); cursor: pointer;
   border-bottom: 2px solid transparent; transition: all 0.2s; margin-bottom: -1px;
 }
-.modal-tab.active { color: var(--text); border-bottom-color: var(--red); }
+.modal-tab.active { color: var(--text); border-bottom-color: var(--blue); }
 
 /* ═══════════════════════════
    RESPONSIVE
@@ -871,3 +795,1093 @@ footer {
 .fade-up-delay-1 { transition-delay: 0.1s; }
 .fade-up-delay-2 { transition-delay: 0.2s; }
 .fade-up-delay-3 { transition-delay: 0.3s; }
+
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DefTalk — Media · Intelligence · Community</title>
+<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+<link href="[https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap)" rel="stylesheet">
+<!-- Link to your new external CSS file here -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      DEF<span>TALK</span>
+    </a>
+    <div class="nav-links">
+      <a href="#watch" class="active">Watch</a>
+      <a href="#trinetra">Trinetra</a>
+      <a href="#read">Read</a>
+      <a href="#books">Books</a>
+      <a href="#events">Events</a>
+      <a href="#membership">Membership</a>
+      <a href="#sponsorship">Sponsor</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-login" onclick="openModal('login')">Log In</button>
+      <button class="nav-join" onclick="openModal('join')">Join Free →</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero dot-grid-blue">
+  <div class="hero-canvas">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-brackets"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-left">
+        <div class="hero-eyebrow fade-up">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Media · Intelligence · Community</span>
+        </div>
+        <div class="hero-title h1 fade-up fade-up-delay-1">
+          <span class="line1">Defence</span>
+          <span class="line2">Talks.</span>
+          <span class="line3">No Filter.</span>
+        </div>
+        <p class="hero-tagline fade-up fade-up-delay-2">
+          India's premier platform for geopolitical analysis, strategic intelligence, and defence discourse — straight from the source. No algorithms. No noise.
+        </p>
+        <div class="hero-actions fade-up fade-up-delay-3">
+          <a href="[https://www.youtube.com/@DEFTALKSbyAadi](https://www.youtube.com/@DEFTALKSbyAadi)" target="_blank" class="btn btn-blue">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12.84 12.84 0 0 0-1.82.2L12 4.27l-2 .37A12.84 12.84 0 0 0 8.18 4a4.83 4.83 0 0 1-3.77 2.69A4.83 4.83 0 0 1 2 10.38C2 14.5 6.44 19 12 19s10-4.5 10-8.62a4.83 4.83 0 0 1-2.41-3.69z"/></svg>
+            Watch on YouTube
+          </a>
+          <a href="#membership" class="btn btn-outline">Become a Member</a>
+        </div>
+      </div>
+
+      <div class="hero-right fade-up fade-up-delay-2">
+        <div class="hero-video-card">
+          <div class="hero-video-thumb">
+            <iframe
+              src="[https://www.youtube.com/embed/6mN0MV9YIs0?rel=0&modestbranding=1](https://www.youtube.com/embed/6mN0MV9YIs0?rel=0&modestbranding=1)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+            <div class="hero-video-label">Latest</div>
+          </div>
+          <div class="hero-video-info">
+            <p>Iran-Israel-USA: Military Scenarios Nobody's Talking About</p>
+            <span>Lt Gen DP Pandey · DefTalk</span>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">1M+</div>
+            <div class="hero-stat-label">Subscribers</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">Episodes</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Member Tiers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <div class="ticker-item">Indo-Pacific Strategic Shift</div>
+      <div class="ticker-item">Northern Frontier Assessment</div>
+      <div class="ticker-item">AI Warfare: Next Decade</div>
+      <div class="ticker-item">New Episode: Wednesday</div>
+      <div class="ticker-item">DefTalk Summit — Register Now</div>
+      <div class="ticker-item">Trinetra Intelligence Dashboard</div>
+      <div class="ticker-item">Col AJ Sir — Book Launch</div>
+      <div class="ticker-item">Indo-Pacific Strategic Shift</div>
+      <div class="ticker-item">Northern Frontier Assessment</div>
+      <div class="ticker-item">AI Warfare: Next Decade</div>
+      <div class="ticker-item">New Episode: Wednesday</div>
+      <div class="ticker-item">DefTalk Summit — Register Now</div>
+      <div class="ticker-item">Trinetra Intelligence Dashboard</div>
+      <div class="ticker-item">Col AJ Sir — Book Launch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WATCH ═══════ -->
+<section id="watch">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-left">
+        <span class="section-num">01 — Watch</span>
+        <div class="h2">Video <span style="color:var(--blue)">Intelligence</span></div>
+      </div>
+      <a href="[https://www.youtube.com/@DEFTALKSbyAadi](https://www.youtube.com/@DEFTALKSbyAadi)" target="_blank" class="section-view-all">All Videos</a>
+    </div>
+
+    <div class="video-categories fade-up">
+      <button class="video-cat-btn active">All</button>
+      <button class="video-cat-btn">Interviews</button>
+      <button class="video-cat-btn">Analysis</button>
+      <button class="video-cat-btn">Shorts</button>
+      <button class="video-cat-btn">Exclusive Briefs</button>
+    </div>
+
+    <!-- FEATURED VIDEO + SIDEBAR -->
+    <div class="video-grid fade-up" style="margin-top:24px;">
+      <!-- Featured / Latest -->
+      <div class="video-featured">
+        <div class="video-featured-thumb" style="aspect-ratio:16/9;position:relative;overflow:hidden;">
+          <iframe id="featured-iframe"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"
+            src="[https://www.youtube.com/embed/6mN0MV9YIs0?rel=0&modestbranding=1](https://www.youtube.com/embed/6mN0MV9YIs0?rel=0&modestbranding=1)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-featured-info">
+          <span class="video-featured-tag" id="featured-tag">Military Analysis</span>
+          <div class="video-featured-title" id="featured-title">Iran-Israel-USA at a Turning Point — Military Scenarios Nobody's Talking About</div>
+          <div class="video-featured-meta">
+            <span id="featured-guest">Lt Gen DP Pandey</span>
+            <span>DefTalk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar: recent episodes -->
+      <div class="video-sidebar">
+        <!-- Card 1 (active) -->
+        <div class="video-card-small" style="background:var(--surface2);" data-id="6mN0MV9YIs0" data-tag="Military Analysis" data-title="Iran-Israel-USA at a Turning Point — Military Scenarios Nobody's Talking About" data-guest="Lt Gen DP Pandey" onclick="selectVideo(this)">
+          <div class="video-card-small-thumb" style="position:relative;">
+            <img src="[https://img.youtube.com/vi/6mN0MV9YIs0/hqdefault.jpg](https://img.youtube.com/vi/6mN0MV9YIs0/hqdefault.jpg)" alt="Iran Israel USA video thumbnail" loading="lazy">
+            <div class="video-play-icon"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg></div>
+          </div>
+          <div class="video-card-small-info">
+            <div class="video-card-small-cat">Military Analysis</div>
+            <div class="video-card-small-title">Iran-Israel-USA: Military Scenarios Nobody's Talking About</div>
+            <div class="video-card-small-dur">Lt Gen DP Pandey</div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="video-card-small" data-id="6a7gICsqRGg" data-tag="Geopolitics" data-title="Is There a MAJOR SPLIT Inside IRAN? — IRGC in Control, Trump's Plan" data-guest="Manish Rai, Aadi" onclick="selectVideo(this)">
+          <div class="video-card-small-thumb" style="position:relative;">
+            <img src="[https://img.youtube.com/vi/6a7gICsqRGg/hqdefault.jpg](https://img.youtube.com/vi/6a7gICsqRGg/hqdefault.jpg)" alt="Iran IRGC video thumbnail" loading="lazy">
+            <div class="video-play-icon"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg></div>
+          </div>
+          <div class="video-card-small-info">
+            <div class="video-card-small-cat">Geopolitics</div>
+            <div class="video-card-small-title">Major Split Inside IRAN? — IRGC in Control, Trump's Plan</div>
+            <div class="video-card-small-dur">Manish Rai, Aadi</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="video-card-small" data-id="NOVmrBhv0fA" data-tag="Naval Strategy" data-title="Strait of Hormuz Battle Begins — Iran vs USA, US Navy, IRGC Tactics" data-guest="Aadi Achint" onclick="selectVideo(this)">
+          <div class="video-card-small-thumb" style="position:relative;">
+            <img src="[https://img.youtube.com/vi/NOVmrBhv0fA/hqdefault.jpg](https://img.youtube.com/vi/NOVmrBhv0fA/hqdefault.jpg)" alt="Hormuz video thumbnail" loading="lazy">
+            <div class="video-play-icon"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg></div>
+          </div>
+          <div class="video-card-small-info">
+            <div class="video-card-small-cat">Naval Strategy</div>
+            <div class="video-card-small-title">Strait of Hormuz: Iran vs USA — Who Wins?</div>
+            <div class="video-card-small-dur">Aadi Achint</div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="video-card-small" data-id="2q23zmPINWs" data-tag="Border Intel" data-title="Pak Army in Retreat in POJK — Asim Munir's Next Move" data-guest="Col Mayank Chaubey" onclick="selectVideo(this)">
+          <div class="video-card-small-thumb" style="position:relative;">
+            <img src="[https://img.youtube.com/vi/2q23zmPINWs/hqdefault.jpg](https://img.youtube.com/vi/2q23zmPINWs/hqdefault.jpg)" alt="POJK video thumbnail" loading="lazy">
+            <div class="video-play-icon"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg></div>
+          </div>
+          <div class="video-card-small-info">
+            <div class="video-card-small-cat">Border Intel</div>
+            <div class="video-card-small-title">Pak Army in Retreat in POJK — Asim Munir's Next Move</div>
+            <div class="video-card-small-dur">Col Mayank Chaubey</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MORE VIDEOS ROW -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:2px;" class="fade-up" id="more-videos">
+
+      <!-- Video A -->
+      <div class="video-card-small" style="flex-direction:column;cursor:pointer;" data-id="vdWWBYixyq0" data-tag="Op Sindoor" data-title="India's Showdown — Geopolitics, US-Pakistan, POJK, Op Sindoor & Modi" data-guest="Maj Samar Singh Toor" onclick="selectVideoAndScroll(this)">
+        <div style="aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2);">
+          <img src="[https://img.youtube.com/vi/vdWWBYixyq0/hqdefault.jpg](https://img.youtube.com/vi/vdWWBYixyq0/hqdefault.jpg)" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;">
+          <div style="position:absolute;inset:0;background:rgba(8,10,14,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;" class="thumb-overlay">
+            <svg width="36" height="36" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+          </div>
+          <div style="position:absolute;top:8px;left:8px;background:var(--blue);color:#fff;font-family:var(--font-mono);font-size:7px;padding:3px 8px;letter-spacing:0.15em;text-transform:uppercase;">Op Sindoor</div>
+        </div>
+        <div style="padding:16px;background:var(--surface);flex:1;">
+          <div style="font-family:var(--font-display);font-size:16px;line-height:1.2;margin-bottom:4px;">India's Showdown — POJK, Op Sindoor & Modi</div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">Maj Samar Singh Toor</div>
+        </div>
+      </div>
+
+      <!-- Video B -->
+      <div class="video-card-small" style="flex-direction:column;cursor:pointer;" data-id="1s7jPsWimuQ" data-tag="India-US" data-title="Modi Vs Trump Escalates — 100% Tariff on Pharma, Trade Deal, H1B, US Dollar" data-guest="Navroop Singh, Aadi" onclick="selectVideoAndScroll(this)">
+        <div style="aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2);">
+          <img src="[https://img.youtube.com/vi/1s7jPsWimuQ/hqdefault.jpg](https://img.youtube.com/vi/1s7jPsWimuQ/hqdefault.jpg)" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;">
+          <div style="position:absolute;inset:0;background:rgba(8,10,14,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;" class="thumb-overlay">
+            <svg width="36" height="36" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+          </div>
+          <div style="position:absolute;top:8px;left:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border2);font-family:var(--font-mono);font-size:7px;padding:3px 8px;letter-spacing:0.15em;text-transform:uppercase;">India-US</div>
+        </div>
+        <div style="padding:16px;background:var(--surface);flex:1;">
+          <div style="font-family:var(--font-display);font-size:16px;line-height:1.2;margin-bottom:4px;">Modi vs Trump Escalates — Tariff on Pharma, H1B</div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">Navroop Singh, Aadi</div>
+        </div>
+      </div>
+
+      <!-- Video C -->
+      <div class="video-card-small" style="flex-direction:column;cursor:pointer;" data-id="PKjED3tYLHU" data-tag="Trade War" data-title="Does Trump Know What He's Doing? — India-USA Tariff Tensions, US Political Divide" data-guest="@speaknsee, Aadi" onclick="selectVideoAndScroll(this)">
+        <div style="aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2);">
+          <img src="[https://img.youtube.com/vi/PKjED3tYLHU/hqdefault.jpg](https://img.youtube.com/vi/PKjED3tYLHU/hqdefault.jpg)" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;">
+          <div style="position:absolute;inset:0;background:rgba(8,10,14,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;" class="thumb-overlay">
+            <svg width="36" height="36" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+          </div>
+          <div style="position:absolute;top:8px;left:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border2);font-family:var(--font-mono);font-size:7px;padding:3px 8px;letter-spacing:0.15em;text-transform:uppercase;">Trade War</div>
+        </div>
+        <div style="padding:16px;background:var(--surface);flex:1;">
+          <div style="font-family:var(--font-display);font-size:16px;line-height:1.2;margin-bottom:4px;">Does Trump Know What He's Doing? — India-USA Tariff Tensions</div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">@speaknsee, Aadi</div>
+        </div>
+      </div>
+
+      <!-- Video D -->
+      <div class="video-card-small" style="flex-direction:column;cursor:pointer;" data-id="Wzseu7Xvzls" data-tag="BRICS" data-title="Modi's Tease to Trump — Jaishankar at UN, BRICS, Russian Oil, Sanctions" data-guest="Aadi Achint" onclick="selectVideoAndScroll(this)">
+        <div style="aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2);">
+          <img src="[https://img.youtube.com/vi/Wzseu7Xvzls/hqdefault.jpg](https://img.youtube.com/vi/Wzseu7Xvzls/hqdefault.jpg)" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;">
+          <div style="position:absolute;inset:0;background:rgba(8,10,14,0.3);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;" class="thumb-overlay">
+            <svg width="36" height="36" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+          </div>
+          <div style="position:absolute;top:8px;left:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border2);font-family:var(--font-mono);font-size:7px;padding:3px 8px;letter-spacing:0.15em;text-transform:uppercase;">BRICS</div>
+        </div>
+        <div style="padding:16px;background:var(--surface);flex:1;">
+          <div style="font-family:var(--font-display);font-size:16px;line-height:1.2;margin-bottom:4px;">Modi's Tease to Trump — Jaishankar at UN, BRICS</div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">Aadi Achint</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscribe CTA -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 32px;background:var(--surface);border:1px solid var(--border);margin-top:2px;flex-wrap:wrap;" class="fade-up">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="width:44px;height:44px;background:var(--blue);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" fill="#fff" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0284c7"/></svg>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:20px;line-height:1;">Subscribe to DEF TALKS by Aadi</div>
+          <div style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);">India's Premier Defence & Geopolitics Channel</div>
+        </div>
+      </div>
+      <a href="[https://www.youtube.com/@DEFTALKSbyAadi?sub_confirmation=1](https://www.youtube.com/@DEFTALKSbyAadi?sub_confirmation=1)" target="_blank" class="btn btn-blue">Subscribe on YouTube →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TRINETRA ═══════ -->
+<section id="trinetra">
+  <div class="trinetra-glow"></div>
+  <div class="container">
+    <div class="trinetra-inner">
+      <div>
+        <div class="trinetra-badge fade-up">
+          <div class="trinetra-badge-dot"></div>
+          <span class="trinetra-badge-text">Intelligence Dashboard — Exclusive</span>
+        </div>
+        <div class="trinetra-title fade-up fade-up-delay-1">
+          <span class="name">Trinetra</span>
+          <span class="sub">The Third Eye · Strategic Intelligence</span>
+        </div>
+        <p class="trinetra-desc fade-up fade-up-delay-2">
+          Trinetra is DefTalk's flagship intelligence layer — a members-only ecosystem offering deep-dive geopolitical analysis, live threat tracking, and data-backed strategic briefs unavailable anywhere else.
+        </p>
+        <div class="trinetra-features fade-up fade-up-delay-3">
+          <div class="trinetra-feature">
+            <div class="trinetra-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M22 12h-4M6 12H2M12 2v4M12 18v4"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div>
+              <div class="trinetra-feature-title">Live Geopolitical Tracking</div>
+              <div class="trinetra-feature-desc">Real-time conflict zone mapping & threat indices</div>
+            </div>
+          </div>
+          <div class="trinetra-feature">
+            <div class="trinetra-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div>
+              <div class="trinetra-feature-title">Strategic Deep Dives</div>
+              <div class="trinetra-feature-desc">Exclusive briefs not published on YouTube</div>
+            </div>
+          </div>
+          <div class="trinetra-feature">
+            <div class="trinetra-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="trinetra-feature-title">Interactive Data Tools</div>
+              <div class="trinetra-feature-desc">Defence indices, force comparisons & timelines</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;" class="fade-up">
+          <a href="#membership" class="btn btn-gold">Unlock Trinetra Access →</a>
+        </div>
+      </div>
+
+      <div class="fade-up fade-up-delay-2">
+        <div class="trinetra-dashboard">
+          <div class="trinetra-dash-header">
+            <div class="trinetra-dash-dot"></div>
+            <span class="trinetra-dash-title">Trinetra — Live Intelligence Board</span>
+            <span class="trinetra-dash-status">LIVE</span>
+          </div>
+          <div class="trinetra-dash-body">
+            <div class="trinetra-chart-row">
+              <div class="trinetra-mini-card">
+                <div class="trinetra-mini-num">147</div>
+                <div class="trinetra-mini-label">Active Flashpoints</div>
+                <div class="trinetra-mini-delta">↑ 3 this week</div>
+              </div>
+              <div class="trinetra-mini-card">
+                <div class="trinetra-mini-num">23</div>
+                <div class="trinetra-mini-label">Live Briefs</div>
+                <div class="trinetra-mini-delta">Updated today</div>
+              </div>
+            </div>
+            <div class="trinetra-map-placeholder">
+              <div class="map-blip" style="top:40%;left:35%"></div>
+              <div class="map-blip" style="top:55%;left:60%"></div>
+              <div class="map-blip" style="top:30%;left:70%"></div>
+              <span class="map-label">Global Theatre Map</span>
+              <!-- Blur overlay for non-members -->
+              <div class="trinetra-blur-overlay">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--gold)"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span class="trinetra-blur-text">Members Only — Unlock Trinetra</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ READ ═══════ -->
+<section id="read">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-left">
+        <span class="section-num">03 — Read</span>
+        <div class="h2">Editorial <span style="color:var(--blue)">Intelligence</span></div>
+      </div>
+      <a href="#" class="section-view-all">All Articles</a>
+    </div>
+
+    <!-- Featured Article -->
+    <div class="article-featured fade-up" style="margin-bottom:2px;">
+      <div class="article-featured-content">
+        <div class="article-featured-badge">
+          <span>Featured Analysis</span>
+        </div>
+        <div class="article-featured-title h3">Decoding the Malacca Dilemma: India's Maritime Choke Point</div>
+        <p class="article-featured-excerpt">
+          The Strait of Malacca carries over 80% of India's energy imports. In a contested maritime environment, securing alternative corridors is no longer optional — it's existential. This brief maps every threat vector.
+        </p>
+        <div style="display:flex;align-items:center;gap:20px;margin-top:8px;">
+          <a href="#" class="btn btn-blue" style="font-size:9px;padding:11px 22px;">Read Full Brief</a>
+          <span style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);">14 min read</span>
+        </div>
+      </div>
+      <div class="article-featured-visual">
+        <svg class="globe-svg" viewBox="0 0 200 200" fill="none" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+          <circle cx="100" cy="100" r="90" stroke="rgba(2,132,199,0.3)" stroke-width="1"/>
+          <circle cx="100" cy="100" r="65" stroke="rgba(2,132,199,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="100" cy="100" r="40" stroke="rgba(2,132,199,0.15)" stroke-width="1"/>
+          <ellipse cx="100" cy="100" rx="90" ry="35" stroke="rgba(2,132,199,0.15)" stroke-width="1"/>
+          <ellipse cx="100" cy="100" rx="90" ry="65" stroke="rgba(2,132,199,0.1)" stroke-width="1"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="rgba(2,132,199,0.15)" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="rgba(2,132,199,0.15)" stroke-width="1"/>
+          <circle cx="130" cy="85" r="4" fill="var(--blue)" opacity="0.8"/>
+          <circle cx="75" cy="110" r="3" fill="var(--blue)" opacity="0.6"/>
+          <circle cx="145" cy="115" r="3" fill="var(--blue)" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="articles-grid fade-up" style="background:var(--border);">
+      <a href="#" class="article-card">
+        <div class="article-card-cat">Maritime Strategy</div>
+        <div class="article-card-title">The Rise of the Global South: Reshaping World Order</div>
+        <p class="article-card-excerpt">How emerging economies are collectively rewriting the rules of engagement — and what India's strategic posture must be.</p>
+        <div class="article-card-meta">
+          <span class="article-card-time">12 min read</span>
+          <button class="article-card-save">+ Save</button>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-card-cat">Tech War</div>
+        <div class="article-card-title">Semiconductor Diplomacy: The New Arms Race of 2026</div>
+        <p class="article-card-excerpt">Chips are the new oil. The nation that controls the foundry controls the battlefield. A DefTalk deep dive.</p>
+        <div class="article-card-meta">
+          <span class="article-card-time">6 min read</span>
+          <button class="article-card-save">+ Save</button>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-card-cat">Border Intelligence</div>
+        <div class="article-card-title">Northern Command Assessment: Ground Reality 2026</div>
+        <p class="article-card-excerpt">An in-depth assessment of India's northern frontier — terrain, troop disposition, and the tactical calculus.</p>
+        <div class="article-card-meta">
+          <span class="article-card-time">10 min read</span>
+          <button class="article-card-save" style="color:var(--gold);border-color:rgba(201,168,76,0.3);">★ Members</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BOOKS ═══════ -->
+<section id="books">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-left">
+        <span class="section-num">04 — Books</span>
+        <div class="h2">The <span style="color:var(--blue)">Library</span></div>
+      </div>
+      <a href="#" class="section-view-all">Full Catalogue</a>
+    </div>
+
+    <div class="books-grid fade-up">
+      <!-- Book 1 -->
+      <div class="book-card">
+        <div class="book-card-cover">
+          <div class="book-cover-placeholder">
+            <div style="width:100%;height:100%;background:linear-gradient(160deg,#1a0a0c 0%,#2d0f12 40%,#1a0a0c 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;gap:12px;">
+              <div style="width:40px;height:2px;background:var(--blue);"></div>
+              <div class="btitle" style="color:var(--text);font-size:24px;">The Geopolitics of Bharat</div>
+              <div class="bauthor">Col. AJ Sir</div>
+              <div style="width:40px;height:2px;background:var(--blue);"></div>
+            </div>
+          </div>
+          <div class="book-cover-badge">Bestseller</div>
+        </div>
+        <div class="book-card-info">
+          <div class="book-card-author">Col. AJ Sir</div>
+          <div class="book-card-title">The Geopolitics of Bharat</div>
+          <p class="book-card-desc">A comprehensive map of India's strategic landscape — from the Himalayas to the Indian Ocean, through the lens of history and modern statecraft.</p>
+          <div class="book-card-price-row">
+            <div class="book-card-price">₹599</div>
+            <div class="book-card-formats">
+              <div class="book-format-badge">Physical</div>
+              <div class="book-format-badge">eBook</div>
+            </div>
+          </div>
+          <button class="book-buy-btn">Add to Cart →</button>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <div class="book-card-cover">
+          <div class="book-cover-placeholder">
+            <div style="width:100%;height:100%;background:linear-gradient(160deg,#0a0d1a 0%,#0f1530 40%,#0a0d1a 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;gap:12px;">
+              <div style="font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.3em;color:var(--gold);margin-bottom:4px;">Classified · Vol. II</div>
+              <div class="btitle" style="color:var(--text);font-size:22px;">War in the Information Age</div>
+              <div class="bauthor">Col. AJ Sir</div>
+            </div>
+          </div>
+          <div class="book-cover-badge" style="background:var(--gold);color:#080a0e;">New</div>
+        </div>
+        <div class="book-card-info">
+          <div class="book-card-author">Col. AJ Sir</div>
+          <div class="book-card-title">War in the Information Age</div>
+          <p class="book-card-desc">Cyber warfare, narrative control, and psychological operations — the new domains of modern conflict dissected with precision.</p>
+          <div class="book-card-price-row">
+            <div class="book-card-price">₹699</div>
+            <div class="book-card-formats">
+              <div class="book-format-badge">Physical</div>
+              <div class="book-format-badge">eBook</div>
+            </div>
+          </div>
+          <button class="book-buy-btn">Add to Cart →</button>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <div class="book-card-cover">
+          <div class="book-cover-placeholder">
+            <div style="width:100%;height:100%;background:linear-gradient(160deg,#0a1209 0%,#121f0e 40%,#0a1209 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;gap:12px;">
+              <div style="font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.3em;color:#4ade80;margin-bottom:4px;">Operations</div>
+              <div class="btitle" style="color:var(--text);font-size:22px;">Northern Frontier: The Untold Story</div>
+              <div class="bauthor">Col. AJ Sir</div>
+            </div>
+          </div>
+          <div class="book-cover-badge">Pre-order</div>
+        </div>
+        <div class="book-card-info">
+          <div class="book-card-author">Col. AJ Sir</div>
+          <div class="book-card-title">Northern Frontier: The Untold Story</div>
+          <p class="book-card-desc">First-hand accounts from the Line of Control — the intelligence, the sacrifices, and the stories never cleared for publication. Until now.</p>
+          <div class="book-card-price-row">
+            <div class="book-card-price">₹799</div>
+            <div class="book-card-formats">
+              <div class="book-format-badge">Physical</div>
+            </div>
+          </div>
+          <button class="book-buy-btn" style="background:var(--blue);border-color:var(--blue);color:#fff;">Pre-order Now →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upsell Banner -->
+    <div style="margin-top:24px;background:var(--surface);border:1px solid var(--border);padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;" class="fade-up">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text-dim);margin-bottom:6px;">Elite Member Benefit</div>
+        <div style="font-family:var(--font-display);font-size:24px;">Get all books at 30% off with Elite membership</div>
+      </div>
+      <a href="#membership" class="btn btn-gold">See Elite Plan →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ EVENTS ═══════ -->
+<section id="events">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-left">
+        <span class="section-num">05 — Events</span>
+        <div class="h2">DefTalk <span style="color:var(--blue)">Summits</span></div>
+      </div>
+      <a href="#" class="section-view-all">Full Calendar</a>
+    </div>
+
+    <div class="events-layout">
+      <div class="events-list fade-up">
+        <!-- Event 1 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="event-date-day">28</div>
+            <div class="event-date-month">Jun</div>
+          </div>
+          <div class="event-info">
+            <div class="event-type">Summit · Delhi</div>
+            <div class="event-title">DefTalk Strategic Summit 2026</div>
+            <div class="event-meta">Vigyan Bhawan · 09:00 AM IST · <span>In-person + Livestream</span></div>
+          </div>
+          <div class="event-actions">
+            <button class="event-rsvp">Register →</button>
+            <button class="event-cal">+ Calendar</button>
+          </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="event-date-day">15</div>
+            <div class="event-date-month">May</div>
+          </div>
+          <div class="event-info">
+            <div class="event-type">Webinar · Online</div>
+            <div class="event-title">Trinetra Intelligence Briefing — Q2 2026</div>
+            <div class="event-meta">Members-Only · Zoom · <span>07:00 PM IST</span></div>
+          </div>
+          <div class="event-actions">
+            <button class="event-rsvp">RSVP →</button>
+            <button class="event-cal">+ Calendar</button>
+          </div>
+        </div>
+        <!-- Event 3 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="event-date-day">04</div>
+            <div class="event-date-month">May</div>
+          </div>
+          <div class="event-info">
+            <div class="event-type">Book Launch · Mumbai</div>
+            <div class="event-title">Northern Frontier — Book Launch Event</div>
+            <div class="event-meta">Crossword Bookstores · <span>With Col. AJ Sir in person</span></div>
+          </div>
+          <div class="event-actions">
+            <button class="event-rsvp">Get Ticket →</button>
+            <button class="event-cal">+ Calendar</button>
+          </div>
+        </div>
+        <!-- Event 4 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="event-date-day">20</div>
+            <div class="event-date-month">Apr</div>
+          </div>
+          <div class="event-info">
+            <div class="event-type">Live Q&A · YouTube</div>
+            <div class="event-title">Open House: Your Defence Questions Answered</div>
+            <div class="event-meta">YouTube Live · Free · <span>08:00 PM IST</span></div>
+          </div>
+          <div class="event-actions">
+            <button class="event-rsvp" style="background:none;border:1px solid var(--border2);color:var(--text-muted);">Notify Me</button>
+            <button class="event-cal">+ Calendar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="events-sidebar fade-up fade-up-delay-1">
+        <div class="countdown-card">
+          <div class="countdown-label">⦿ Next Major Event</div>
+          <div class="countdown-event-name">DefTalk Strategic Summit 2026</div>
+          <div class="countdown-timer" id="countdown-timer">
+            <div class="countdown-unit"><div class="countdown-num" id="cd-days">87</div><div class="countdown-unit-label">Days</div></div>
+            <div class="countdown-unit"><div class="countdown-num" id="cd-hours">14</div><div class="countdown-unit-label">Hours</div></div>
+            <div class="countdown-unit"><div class="countdown-num" id="cd-mins">32</div><div class="countdown-unit-label">Mins</div></div>
+            <div class="countdown-unit"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-unit-label">Secs</div></div>
+          </div>
+          <button class="btn btn-blue" style="width:100%;margin-top:20px;justify-content:center;" onclick="openModal('join')">Register Now →</button>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);padding:28px;">
+          <div style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.25em;color:var(--text-dim);margin-bottom:16px;">Past Events Archive</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:18px;color:var(--text-dim);min-width:40px;">'25</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">DefTalk Annual Conclave</div>
+                <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">1,200 Attendees · New Delhi</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:18px;color:var(--text-dim);min-width:40px;">'24</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;">Borders & Beyond Summit</div>
+                <div style="font-family:var(--font-mono);font-size:8px;color:var(--text-dim);">850 Attendees · Chandigarh</div>
+              </div>
+            </div>
+            <a href="#" style="font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:6px;">View Archive →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MEMBERSHIP ═══════ -->
+<section id="membership">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="membership-intro fade-up">
+      <span class="section-num">06 — Membership</span>
+      <div class="h2" style="margin-top:8px;">Join the <span style="color:var(--blue)">Inner Circle</span></div>
+      <p>From casual viewer to lifelong member — choose your level of access to the DefTalk ecosystem.</p>
+    </div>
+
+    <div class="tiers-grid fade-up">
+      <!-- Free -->
+      <div class="tier-card">
+        <div class="tier-name">Free</div>
+        <div class="tier-tagline">Start Here</div>
+        <div class="tier-price free">₹0</div>
+        <div class="tier-period">Forever free</div>
+        <div class="tier-features">
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Public YouTube content</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> 3 free articles/month</div>
+          <div class="tier-feature"><span class="tier-feature-check dim">✗</span> <span style="opacity:0.4;">Trinetra access</span></div>
+          <div class="tier-feature"><span class="tier-feature-check dim">✗</span> <span style="opacity:0.4;">Exclusive videos</span></div>
+        </div>
+        <button class="tier-cta tier-cta-outline" onclick="openModal('join')">Get Started</button>
+      </div>
+
+      <!-- Silver -->
+      <div class="tier-card">
+        <div class="tier-name">Silver</div>
+        <div class="tier-tagline">Supporter</div>
+        <div class="tier-price">₹159</div>
+        <div class="tier-period">/month · billed monthly</div>
+        <div class="tier-features">
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Everything in Free</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Unlimited articles</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Members-only comments</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Loyalty badges</div>
+          <div class="tier-feature"><span class="tier-feature-check dim">✗</span> <span style="opacity:0.4;">Trinetra access</span></div>
+        </div>
+        <button class="tier-cta tier-cta-outline" onclick="openModal('join')">Select Silver</button>
+      </div>
+
+      <!-- Gold - Featured -->
+      <div class="tier-card featured">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-name">Gold</div>
+        <div class="tier-tagline">Full Intelligence Access</div>
+        <div class="tier-price">₹599</div>
+        <div class="tier-period">/month · billed monthly</div>
+        <div class="tier-features">
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Everything in Silver</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Trinetra dashboard access</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Exclusive tactical briefs</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Q&A priority with experts</div>
+          <div class="tier-feature"><span class="tier-feature-check">✓</span> Member-only video archive</div>
+        </div>
+        <button class="tier-cta tier-cta-blue" onclick="openModal('join')">Access Gold →</button>
+      </div>
+
+      <!-- Elite -->
+      <div class="tier-card">
+        <div class="tier-name" style="color:var(--gold);">Elite</div>
+        <div class="tier-tagline" style="color:var(--gold);opacity:0.6;">Command Level</div>
+        <div class="tier-price" style="color:var(--gold);">₹1,499</div>
+        <div class="tier-period">/month · billed monthly</div>
+        <div class="tier-features">
+          <div class="tier-feature"><span class="tier-feature-check" style="color:var(--gold);">✓</span> Everything in Gold</div>
+          <div class="tier-feature"><span class="tier-feature-check" style="color:var(--gold);">✓</span> 30% off all books</div>
+          <div class="tier-feature"><span class="tier-feature-check" style="color:var(--gold);">✓</span> Private 1:1 Q&A sessions</div>
+          <div class="tier-feature"><span class="tier-feature-check" style="color:var(--gold);">✓</span> Free event tickets</div>
+          <div class="tier-feature"><span class="tier-feature-check" style="color:var(--gold);">✓</span> Credited in publications</div>
+        </div>
+        <button class="tier-cta" style="background:var(--gold);color:#080a0e;font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.2em;font-weight:700;border:none;cursor:pointer;padding:14px;width:100%;transition:all 0.2s;" onclick="openModal('join')">Join Elite →</button>
+      </div>
+    </div>
+
+    <!-- Payment info -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap;" class="fade-up">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--text-dim)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);">SSL Secured · Razorpay · Stripe</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--text-dim)"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);">Cancel anytime</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--text-dim)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span style="font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-dim);">Instant access after payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SPONSORSHIP ═══════ -->
+<section id="sponsorship">
+  <div class="container">
+    <div class="sponsorship-layout">
+      <div class="fade-up">
+        <span class="section-num">07 — Sponsorship</span>
+        <div class="h2" style="margin-top:8px;margin-bottom:16px;">Partner <span style="color:var(--blue)">With Us</span></div>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:32px;max-width:480px;">
+          DefTalk reaches a highly engaged, decision-making audience of defence professionals, policy researchers, and strategic thinkers. Our partners don't just get placement — they get credibility.
+        </p>
+        <div class="sponsor-tiers-grid">
+          <div class="sponsor-tier-card">
+            <div class="sponsor-tier-name">Bronze</div>
+            <div class="sponsor-tier-reach">50K+ Monthly Impressions</div>
+            <div class="sponsor-tier-perks">
+              <div class="sponsor-tier-perk">Logo in footer</div>
+              <div class="sponsor-tier-perk">Newsletter mention</div>
+            </div>
+          </div>
+          <div class="sponsor-tier-card">
+            <div class="sponsor-tier-name">Silver</div>
+            <div class="sponsor-tier-reach">150K+ Monthly Impressions</div>
+            <div class="sponsor-tier-perks">
+              <div class="sponsor-tier-perk">Homepage logo banner</div>
+              <div class="sponsor-tier-perk">Video shoutout</div>
+            </div>
+          </div>
+          <div class="sponsor-tier-card featured">
+            <div class="sponsor-tier-name gold">Gold</div>
+            <div class="sponsor-tier-reach">500K+ Monthly Impressions</div>
+            <div class="sponsor-tier-perks">
+              <div class="sponsor-tier-perk" style="color:var(--text-muted)">All Silver perks</div>
+              <div class="sponsor-tier-perk" style="color:var(--text-muted)">Dedicated episode segment</div>
+              <div class="sponsor-tier-perk" style="color:var(--text-muted)">Event co-branding</div>
+            </div>
+          </div>
+          <div class="sponsor-tier-card">
+            <div class="sponsor-tier-name">Patron</div>
+            <div class="sponsor-tier-reach">Custom package</div>
+            <div class="sponsor-tier-perks">
+              <div class="sponsor-tier-perk">Full editorial integration</div>
+              <div class="sponsor-tier-perk">Custom reporting</div>
+            </div>
+          </div>
+        </div>
+        <div class="sponsor-hall">
+          <div class="sponsor-hall-title">Partner Hall of Fame</div>
+          <div class="sponsor-logos">
+            <div class="sponsor-logo-slot">Partner</div>
+            <div class="sponsor-logo-slot">Partner</div>
+            <div class="sponsor-logo-slot">Partner</div>
+            <div class="sponsor-logo-slot">Your Brand</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up fade-up-delay-1">
+        <div style="background:var(--surface);border:1px solid var(--border);padding:40px;">
+          <div class="sponsor-form-title">Become a Sponsor</div>
+          <p class="sponsor-form-desc">Tell us about your brand and we'll craft a partnership that delivers real, measurable results.</p>
+          <div class="sponsor-form-fields">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="form-field">
+                <label class="form-label">Your Name</label>
+                <input class="form-input" type="text" placeholder="Full name">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Company</label>
+                <input class="form-input" type="text" placeholder="Brand / Organisation">
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="you@company.com">
+            </div>
+            <div class="form-field">
+              <label class="form-label">Sponsorship Tier</label>
+              <select class="form-select">
+                <option>Bronze Partner</option>
+                <option>Silver Partner</option>
+                <option selected>Gold Partner</option>
+                <option>Custom / Patron</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Tell us about your goals and target audience..."></textarea>
+            </div>
+            <button class="btn btn-blue" style="width:100%;justify-content:center;">Submit Inquiry →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">DEF<span>TALK</span></div>
+        <p class="footer-tagline">India's premier platform for geopolitical intelligence, strategic defence analysis, and community discourse. No algorithms. Just truth.</p>
+        <div class="footer-socials">
+          <a href="[https://www.youtube.com/@DEFTALKSbyAadi](https://www.youtube.com/@DEFTALKSbyAadi)" target="_blank" class="social-btn">YT</a>
+          <a href="[https://x.com/aadiachint](https://x.com/aadiachint)" target="_blank" class="social-btn">X</a>
+          <a href="[https://t.me/deftalksaadi](https://t.me/deftalksaadi)" target="_blank" class="social-btn">TG</a>
+          <a href="[https://www.instagram.com/indiandefenceanalystaadi](https://www.instagram.com/indiandefenceanalystaadi)" target="_blank" class="social-btn">IG</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <a href="#watch">Video Archive</a>
+          <a href="#trinetra">Trinetra Dashboard</a>
+          <a href="#read">Editorial CMS</a>
+          <a href="#books">Book Storefront</a>
+          <a href="#events">Events & Summits</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Membership</div>
+        <div class="footer-links">
+          <a href="#membership">Free Tier</a>
+          <a href="#membership">Silver</a>
+          <a href="#membership">Gold</a>
+          <a href="#membership">Elite</a>
+          <a href="#sponsorship">Sponsorship</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="[https://www.thedeftalks.com/about-the-show](https://www.thedeftalks.com/about-the-show)" target="_blank">About DefTalk</a>
+          <a href="[https://x.com/aadiachint](https://x.com/aadiachint)" target="_blank">Aadi Achint</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container" style="padding-left:0;padding-right:0;">
+      <span class="footer-copyright">© 2026 DefTalk Media Group. All Intelligence Reserved.</span>
+      <span class="footer-built-by">Built by <a href="[https://doers.digital](https://doers.digital)" target="_blank">doers.digital</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal-overlay" id="auth-modal" onclick="closeModalOnBg(event)">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">DefTalk</div>
+    <div class="modal-sub" id="modal-sub">Intelligence · Community · Access</div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('join',this)">Join Free</button>
+      <button class="modal-tab" onclick="switchTab('login',this)">Log In</button>
+    </div>
+    <div id="modal-join-form">
+      <div class="sponsor-form-fields">
+        <div class="form-field">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your name">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Create a password">
+        </div>
+        <button class="btn btn-blue" style="width:100%;justify-content:center;margin-top:8px;">Create Account →</button>
+        <p style="font-family:var(--font-mono);font-size:8px;text-align:center;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.15em;margin-top:8px;">Free forever · No credit card needed</p>
+      </div>
+    </div>
+    <div id="modal-login-form" style="display:none;">
+      <div class="sponsor-form-fields">
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Your password">
+        </div>
+        <button class="btn btn-blue" style="width:100%;justify-content:center;margin-top:8px;">Sign In →</button>
+        <p style="font-family:var(--font-mono);font-size:8px;text-align:center;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.15em;margin-top:8px;cursor:pointer;">Forgot password?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── VIDEO PLAYER — swap featured on click ──
+function selectVideo(el) {
+  const id = el.dataset.id;
+  const tag = el.dataset.tag;
+  const title = el.dataset.title;
+  const guest = el.dataset.guest;
+  document.getElementById('featured-iframe').src =
+    '[https://www.youtube.com/embed/](https://www.youtube.com/embed/)' + id + '?autoplay=1&rel=0&modestbranding=1';
+  document.getElementById('featured-tag').textContent = tag;
+  document.getElementById('featured-title').textContent = title;
+  document.getElementById('featured-guest').textContent = guest;
+  document.querySelectorAll('#watch .video-card-small').forEach(c => c.style.background = '');
+  el.style.background = 'var(--surface2)';
+}
+function selectVideoAndScroll(el) {
+  selectVideo(el);
+  document.getElementById('watch').scrollIntoView({ behavior: 'smooth' });
+}
+// Hover overlays on bottom row
+document.querySelectorAll('.thumb-overlay').forEach(ov => {
+  ov.parentElement.addEventListener('mouseenter', () => ov.style.opacity = '1');
+  ov.parentElement.addEventListener('mouseleave', () => ov.style.opacity = '0');
+});
+
+// ── NAVIGATION active state on scroll ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  // Nav background
+  document.getElementById('main-nav').style.background =
+    window.scrollY > 60 ? 'rgba(8,10,14,0.98)' : 'rgba(8,10,14,0.85)';
+});
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── VIDEO CATEGORY BUTTONS ──
+document.querySelectorAll('.video-cat-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.video-cat-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── COUNTDOWN TIMER ──
+const eventDate = new Date('2026-06-28T09:00:00+05:30').getTime();
+function updateCountdown() {
+  const now = Date.now();
+  let diff = Math.max(0, eventDate - now);
+  const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+  const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+  const m = Math.floor(diff / 60000); diff -= m * 60000;
+  const s = Math.floor(diff / 1000);
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ── MODAL ──
+function openModal(tab='join') {
+  document.getElementById('auth-modal').classList.add('open');
+  switchTab(tab, document.querySelector('.modal-tab'));
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('auth-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('auth-modal')) closeModal();
+}
+function switchTab(tab, btn) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.modal-tab')[tab === 'join' ? 0 : 1].classList.add('active');
+  document.getElementById('modal-join-form').style.display = tab === 'join' ? 'block' : 'none';
+  document.getElementById('modal-login-form').style.display = tab === 'login' ? 'block' : 'none';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── HAMBURGER ──
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const links = document.querySelector('.nav-links');
+  const actions = document.querySelector('.nav-actions');
+  if (menuOpen) {
+    links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(8,10,14,0.98);padding:20px;gap:0;border-bottom:1px solid var(--border);z-index:99;';
+    links.querySelectorAll('a').forEach(a => { a.style.borderBottom = '1px solid var(--border)'; a.style.padding = '16px'; });
+  } else {
+    links.style.cssText = '';
+    links.querySelectorAll('a').forEach(a => { a.style.cssText = ''; });
+  }
+}
+</script>
+</body>
+</html>
