@@ -1,13 +1,31 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.vercel/
+.next/
+dist/
+build/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # OS files
+.DS_Store
 Thumbs.db
-*.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # Logs
 *.log
-
-# Node.js dependencies
-node_modules/
-
-# Build output
-dist/
-build/
+npm-debug.log*
