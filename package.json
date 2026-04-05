@@ -1,0 +1,8 @@
+{
+  "name": "deftalk",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80"
+  }
+}
